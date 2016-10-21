@@ -9,8 +9,6 @@ def compute_loss(y, tx, w):
 
     You can calculate the loss using mse or mae.
     """
-    # ***************************************************
-    # INSERT YOUR CODE HERE
-    # TODO: compute loss by MSE / MAE
-    # ***************************************************
-    raise NotImplementedError
+    e = y-np.dot(tx,w)
+    n = e.shape[0]
+    return (1/(2*n))*np.dot(e.T,e)
