@@ -139,7 +139,7 @@ def reg_logistic_regression_auto(y, tx, kfold, max_iters, lambdas):
     def logistic_reg_loss(ys, xs, ws, lambda_):
         return calculate_loss(ys, xs, ws) + lambda_*np.dot(ws.T,ws)
     
-    best_lbda = max(cross_validation(y, tx, kfold, lambdas, curried_logistic, logistic_reg_loss),
+    best_lbda = min(cross_validation(y, tx, kfold, lambdas, curried_logistic, logistic_reg_loss),
         key = lambda tup: tup[2])[0]
   
     train_ratio = 1-(1/float(kfold))
