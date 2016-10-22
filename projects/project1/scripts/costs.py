@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
-"""a function used to compute the loss."""
+"""computer loss for least squares"""
 
 import numpy as np
 
 
 def calculate_mse(e):
     """Calculate the mse for vector e."""
-    return 1/2*np.mean(e**2)
+    return (1/(2*len(e)))*np.dot(e.T,e)
 
 
 def calculate_mae(e):
