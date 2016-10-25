@@ -39,7 +39,8 @@ def cross_validation(y, x, k_fold, lambdas, regression_method, regression_loss):
     rmse_te = []
     for lamb in lambdas:
         e_tr, e_te = zip(*[cross_validation_step(y, x, k_indices, k, lamb, regression_method, regression_loss) for k in range(k_fold)])
-        e_tr, e_te = np.array(e_tr).mean(), np.array(e_te).mean()
+        e_tr, e_te = np.array(e_tr), np.array(e_te)
+        e_tr, e_te = e_tr.mean()*e_tr.std(), e_te.mean()*e_te.std()
         rmse_tr.append(e_tr)
         rmse_te.append(e_te)
     return zip(lambdas, rmse_tr, rmse_te)
