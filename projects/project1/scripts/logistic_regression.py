@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """functions in the logistic regression family"""
 import numpy as np
-from cross_validation import cross_validation
+from cross_validation import cross_validation, cross_validation_plot
 from line_search import backtracking_line_search
 from split_data import split_data
 
@@ -149,6 +149,16 @@ def reg_logistic_regression_auto(y, tx, kfold, max_iters, lambdas):
     #Model selection (kfold) uses cost with lbda, we return un-regularized cost.
     test_loss = calculate_loss(y_test, x_test, w)
     return (test_loss, w)
+
+
+def reg_logistic_regression_auto_plot(y, tx, kfold, max_iters, lambdas):
+    initial_w = np.zeros(tx.shape[1])
+    def curried_logistic(ys, xs, lambda_):
+        return logistic_auto(ys, xs, lambda_, max_iters, initial_w)
+    def logistic_reg_loss(ys, xs, ws, lambda_):
+        return calculate_loss(ys, xs, ws) + lambda_*np.dot(ws.T,ws)
     
+    return cross_validation_plot(y, tx, kfold, lambdas, curried_logistic, logistic_reg_loss)
+  
     
     

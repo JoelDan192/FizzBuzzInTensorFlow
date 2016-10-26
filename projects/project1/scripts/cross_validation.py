@@ -37,10 +37,31 @@ def cross_validation(y, x, k_fold, lambdas, regression_method, regression_loss):
     # define lists to store the loss of training data and test data
     rmse_tr = []
     rmse_te = []
+    #We use the mean scaled by the variance and sample size as performance metric on the test error across folds
     for lamb in lambdas:
         e_tr, e_te = zip(*[cross_validation_step(y, x, k_indices, k, lamb, regression_method, regression_loss) for k in range(k_fold)])
         e_tr, e_te = np.array(e_tr), np.array(e_te)
-        e_tr, e_te = e_tr.mean()*e_tr.std(), e_te.mean()*e_te.std()
+        e_tr = e_tr.mean()*(k_fold*e_tr.std())
+        e_te = e_te.mean()*(k_fold*e_te.std())
         rmse_tr.append(e_tr)
         rmse_te.append(e_te)
     return zip(lambdas, rmse_tr, rmse_te)
+
+
+def cross_validation_plot(y, x, k_fold, lambdas, regression_method, regression_loss):
+    """returns one (rmse_tr, rmse_te) e.g. rmse training/test error per lambda, obtained
+    via avaraging in a k-fold cross validation"""
+    seed = 1
+    # split data in k fold
+    k_indices = build_k_indices(y.shape[0], k_fold, seed)
+    # define lists to store the loss of training data and test data
+    rmse_tr = []
+    rmse_te = []
+    #We use the mean scaled by the variance and sample size as performance metric on the test error across folds
+    for lamb in lambdas:
+        e_tr, e_te = zip(*[cross_validation_step(y, x, k_indices, k, lamb, regression_method, regression_loss) for k in range(k_fold)])
+        e_tr, e_te = np.array(e_tr), np.array(e_te)
+        rmse_tr = rmse_tr + [e for e in e_tr]
+        rmse_te = rmse_te + [e for e in e_te]
+    return (rmse_tr, rmse_te)
+
