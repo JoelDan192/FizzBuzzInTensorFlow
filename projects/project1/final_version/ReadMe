@@ -1,0 +1,20 @@
+	Project 1 - Machine Learning course
+  Team 3 : Joel Castellon, Mathieu Clavel, Marta Kuziora
+
+To generate .csv file with predictions run the script 'run.py' (detailed instruction below). All functions required to execute the script are in 'implementations.py' file and provided helpers files ('costs.py', ' helpers.py', proj1_helpers.py'.
+
+Basic methods implementations are included in 'implementations.py' file.
+
+
+How does 'run.py' script work?
+Script execution consist of 5 parts:
+1.Loading data for training and testing from .csv files - must be included in the same folder as script with names 'train.csv', 'test.csv'
+2.Preparing data (as described in report)
+3.Computing weights using regularized logistic regression with k-fold cross validation to select an appropriate lambda parameter
+4.Generating predictions
+5.Saving .csv file with predictions - output file can be found in the same folder as script with name 'submission.csv'
+
+
+ 
+
+
