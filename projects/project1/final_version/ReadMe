@@ -5,6 +5,7 @@ To generate .csv file with predictions run the script 'run.py' (detailed instruc
 
 Basic methods implementations are included in 'implementations.py' file.
 
+**NOTE: all main methods are in implementations.py**
 
 How does 'run.py' script work?
 Script execution consist of 5 parts:
@@ -13,6 +14,9 @@ Script execution consist of 5 parts:
 3.Computing weights using regularized logistic regression with k-fold cross validation to select an appropriate lambda parameter
 4.Generating predictions
 5.Saving .csv file with predictions - output file can be found in the same folder as script with name 'submission.csv'
+6.Scripts have the convention that data sets are located in the parent directory of its folder
+7.Plot generation as displayed in the report can be found at plot_generation.py
+8.Some code depends on specific dataset generation (plot_generation.py) in specific, it won't work unless train/test_sel.py are first generated.
 
 
  
