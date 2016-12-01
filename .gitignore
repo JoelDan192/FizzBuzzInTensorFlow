@@ -87,3 +87,6 @@ ENV/
 
 # Rope project settings
 .ropeproject
+Projet 2/train_pos_full.txt
+Projet 2/train_neg_full.txt
+Projet 2/cooc.pkl
