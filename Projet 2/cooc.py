@@ -11,8 +11,8 @@ def main():
 
     data, row, col = [], [], []
     counter = 1
-    for fn in ['train_pos.txt', 'train_neg.txt']:
-        with open(fn) as f:
+    for fn in ['train_pos_full.txt', 'train_neg_full.txt']:
+        with open(fn, encoding='utf8') as f:
             for line in f:
                 tokens = [vocab.get(t, -1) for t in line.strip().split()]
                 tokens = [t for t in tokens if t >= 0]
